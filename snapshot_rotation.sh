@@ -14,7 +14,7 @@
 #
 
 
-#### NOTICE: Snapshots are not a true VM backup! This is intended to preserver configuration changes only.
+#### NOTICE: Snapshots are not a true VM backup! This is intended to preserve configuration changes only.
 
 #!/bin/bash
 
