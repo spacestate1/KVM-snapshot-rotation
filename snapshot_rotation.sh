@@ -15,6 +15,7 @@
 
 
 #### NOTICE: Snapshots are not a true VM backup! This is intended to preserve configuration changes only.
+#### Tested on KVM v4
 
 #!/bin/bash
 
