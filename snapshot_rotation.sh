@@ -20,8 +20,8 @@
 #!/bin/bash
 
 printf -v DATE '%(%Y-%m-%d)T' -1
+printf -v week_DATE '%(%Y-%U)T' -1
 e_date=$(date -d $DATE +"%s")
-
 
 #### List running VMs
 vm01="$(/usr/bin/virsh list --state-running | tail -n +2 | awk -F " " '{print $2}' | sed '/^$/d' | tr " " "\n")"
@@ -55,11 +55,12 @@ do
 		   weeks_time="$((time_diff / 604800))"
 
 		   if [ "$weeks_time" -gt 52 ]; then
+			   echo "Removing 52 week old snapshot"
 			   /usr/bin/virsh snapshot-delete --domain $vm02 --snapshotname $snaps
 #### Create a new snapshot if one has not been made for one week
-		   elif [ "$weeks_time" -eq 1 ]; then
+		   elif [ "$weeks_time" -ge 1 ]; then
 
-			  new_snap="_${DATE}_autosnapped"
+			  new_snap="_${week_DATE}_autosnapped"
 
 			  if [[ ! " ${prev_snaps[@]} " =~ "${new_snap}" ]]; then
 		               echo "Creating new snapshot ${new_snap} on ${vm02}"
