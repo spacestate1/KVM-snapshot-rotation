@@ -99,10 +99,10 @@ fi
        init_snaps[$i]=$isnap
        ((i++))
        done
-       if [[ "${init_snaps[@]}" == *"_init_autosnapped"* ]];
+       if [[ "${init_snaps[@]}" == *"_init_autosnapped" ]];
            then
                echo "existing init snaps found on ${vm02}"
-               :
+               #:
            else
                first_snap="_init_autosnapped"
                echo "Creating first snapshot ${first_snap} on ${vm02}"
